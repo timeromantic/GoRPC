@@ -1,0 +1,30 @@
+syntax = "proto2";
+
+package ProtoBuf;
+
+message ResultList_2_0 {
+    optional int64 advertiser_id = 1; // 账户id
+    optional string type = 2;// 推广目的类型
+    required bool is_deliver = 3; //是否投放，0：不投，1：投放
+}
+
+
+message RTARequest_2_0 {
+    required int32 platform = 1;    // 平台id
+    optional string idfa_md5 = 2; //明文计算MD5 然后转小写
+    optional string imei_md5 = 3; //明文计算MD5 然后转小写
+    repeated int64 advertiser_ids = 4; //账户id 集合
+    repeated string types = 5; //推广类型集合，例如拉新等
+    optional int32 age= 6; //年龄
+    optional string gender= 7; //性别
+    optional int32 city= 8; //城市
+    optional string request_id_md5=9;
+}
+
+message RTAResponse_2_0 {
+    required int32 status_code= 1; // 服务状态码，正常：0，异常：1
+    repeated ResultList_2_0 result = 2; //账户批量返回状态
+}
+
+
+
